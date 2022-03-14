@@ -70,11 +70,11 @@ class Kalah:
 
     def over(self):
         board = self.board
-        return (board[0] + board[7] == self.stones) or (self.moves is None)
+        return (board[0] + board[7] == self.stones) or (len(self.moves) == 0)
         # all pebbles are in kalahs or there are no moves left
 
     def eval(self):
-        # if A ahead - positive values, if B ahead - negative
+        # if A ahead - positive, if B ahead - negative
         # kalah A has more than half
         if self.board[0] > self.half:
             val = 100  # Kalah a
@@ -84,7 +84,7 @@ class Kalah:
         # how far A is ahead of B
         else:
             val = self.board[0] - self.board[7]
-        self.ivalue = self.value = val # basically telling you how things are going
+        self.ivalue = self.value = val  # basically telling you how things are going
 
     def legalMoves(self):  # populates a list of possible moves
         moves = []

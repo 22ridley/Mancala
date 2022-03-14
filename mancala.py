@@ -13,7 +13,7 @@ clock = pygame.time.Clock()
 board = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4]
 
 maxdepth = 3
-gnode = Kalah(board, "B") # the player will always be B, the computer will also be A
+gnode = Kalah(board, "B")  # the player will always be B, the computer will also be A
 
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 500
@@ -71,6 +71,7 @@ def updatescreen(board):
 def click():
     x, y = pygame.mouse.get_pos()
     pot = 0
+    # pressing next to let the computer go
     if 470 < x < 540 and 80 < y < 120:
         if not gnode.over():
             if gnode.player == 'A':  # if the player is A
@@ -92,6 +93,7 @@ def click():
     elif 645 < x < 715 and 305 < y < 385:
         pot = 6
     gnode.legalMoves()
+    # choosing the kalah for the player to play
     if pot in gnode.moves:
         if not gnode.over():
             if not gnode.player == 'A':
@@ -101,7 +103,9 @@ def click():
                 pygame.display.flip()
                 gnode.next = None
 
+
 updatescreen(gnode.board)
+
 
 while True:
     if not gnode.over():
